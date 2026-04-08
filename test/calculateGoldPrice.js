@@ -9,6 +9,9 @@ function calculateGoldPrice(weightInBaht, pricePerBaht) {
 }
 
 function calculateGoldPriceWithFee(weightInBaht, pricePerBaht, feePercent = 1) {
+  if (typeof feePercent !== 'number' || feePercent < 0) {
+    throw new Error('Fee percentage must be a non-negative number');
+  }
   const basePrice = calculateGoldPrice(weightInBaht, pricePerBaht);
   const fee = basePrice * (feePercent / 100);
   return basePrice + fee;
