@@ -6,11 +6,11 @@ Analyze code diff from a SINGLE FILE in Pull Request and provide detailed review
 ## Report Structure (English) - 1 File
 
 ## **Score (0-100) 📊**
-Display score prominently in large bold text
-- 90-100: Excellent
-- 70-89: Good
-- 50-69: Needs improvement
-- Below 50: Requires fixes
+Display score prominently in large bold text with color coding  format "Score: X/100":
+- 90-100: Excellent (Green)
+- 70-89: Good (Yellow)
+- 50-69: Needs improvement (Orange)
+- Below 50: Requires fixes (Red)
 
 ### Risk (if any)
 - Explain potential risks: Security, Performance, Bugs, Breaking Changes
