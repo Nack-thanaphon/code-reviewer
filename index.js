@@ -52,7 +52,24 @@ app.post("/api/github-webhook", async (req, res) => {
         }
 
         const finalPrompt = `${skillPrompt}\n\n---\n\nFile: ${file.name}\n\`\`\`\n${contentToReview}\n\`\`\``;
-        const reviewResult = await aiServices.callGemini(finalPrompt);
+        
+        let reviewResult;
+        let retries = 3;
+        for (let i = 0; i < retries; i++) {
+          reviewResult = await aiServices.callGemini(finalPrompt);
+          if (reviewResult && !reviewResult.startsWith("Error calling")) {
+            break;
+          }
+          if (i < retries - 1) {
+            const waitTime = Math.pow(2, i) * 1000;
+            console.log(`Retry ${i + 1}/${retries - 1} after ${waitTime}ms...`);
+            await new Promise(resolve => setTimeout(resolve, waitTime));
+          }
+        }
+
+        if (!reviewResult || reviewResult.startsWith("Error calling")) {
+          reviewResult = "⚠️ Unable to generate review due to API limitations. Please try again later.";
+        }
 
         await postComment(
           repoFullName,
