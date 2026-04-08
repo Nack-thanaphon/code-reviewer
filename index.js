@@ -71,3 +71,11 @@ app.post('/api/github-webhook', async (req, res) => {
 
 // Export เพื่อให้ Vercel รู้จัก
 module.exports = app;
+
+// Local development server
+if (require.main === module) {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+}
