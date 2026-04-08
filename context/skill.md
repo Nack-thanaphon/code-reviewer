@@ -3,6 +3,20 @@
 ## Mission
 Analyze code diff from a SINGLE FILE in Pull Request and provide detailed review.
 
+**ONLY review files with these extensions:**
+- `.ts`, `.tsx` (TypeScript)
+- `.js`, `.jsx` (JavaScript)
+- `.php` (PHP)
+- `.py` (Python)
+- `.java` (Java)
+- `.cs`, `.vb` (DotNet)
+- `.sql` (SQL)
+
+**SKIP files like:**
+- README, documentation files (.md, .txt)
+- Configuration files
+- Any non-code files
+
 ## Report Structure (English) - 1 File
 
 ## **Score (0-100) 📊**
