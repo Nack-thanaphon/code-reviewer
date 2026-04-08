@@ -56,7 +56,7 @@ app.post("/api/github-webhook", async (req, res) => {
         let reviewResult;
         let retries = 3;
         for (let i = 0; i < retries; i++) {
-          reviewResult = await aiServices.callGemini(finalPrompt);
+          reviewResult = await aiServices.callZAI(finalPrompt);
           if (reviewResult && !reviewResult.startsWith("Error calling")) {
             break;
           }

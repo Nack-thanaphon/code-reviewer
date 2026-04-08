@@ -6,10 +6,15 @@ class AIService {
       console.log("ZAI_API_KEY:", process.env.ZAI_API_KEY);
 
       const response = await axios.post(
-        "https://api.lingyiwanwu.com/v1/chat/completions",
+        "https://api.z.ai/api/paas/v4/chat/completions",
         {
-          model: "yi-medium",
-          messages: [{ role: "user", content: prompt }],
+          model: "GLM-4.7-Flash",
+          messages: [
+            { role: "system", content: "You are a helpful code review assistant." },
+            { role: "user", content: prompt }
+          ],
+          temperature: 0.7,
+          stream: false
         },
         {
           headers: {
